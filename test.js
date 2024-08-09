@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Connecting to DB
-mongoose.connect('mongodb://localhost/pcat-test-db');
+
 
 // Creating schema
 const PhotoSchema = new Schema({
