@@ -23,12 +23,19 @@ app.use(express.json());
 app.get('/', async (req, res) => {
   const photos = await Photo.find({});
   res.render('index', {
-    photos
+    photos,
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('about');
+});
+
+app.get('/photos/:id', async (req, res) => {
+  const photo = await Photo.findById(req.params.id);
+  res.render('photo', {
+    photo,
+  });
 });
 
 app.get('/add', (req, res) => {
