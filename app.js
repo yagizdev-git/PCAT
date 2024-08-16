@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const methodOverride = require('method-override');
 const ejs = require('ejs');
+require('dotenv').config();
 const photoController = require('./controllers/photoControllers')
 const pageController = require('./controllers/pageControllers')
 
@@ -11,7 +12,16 @@ const pageController = require('./controllers/pageControllers')
 const app = express();
 
 // Connecting to DB
-// mongoose.connect('mongodb://localhost/pcat-db');
+const connectDB = async () => {
+  try {
+    const uri = process.env.MONGODB_URI;
+    await mongoose.connect(uri);
+    console.log('Connected to MongoDB successfuly!');
+  } catch (error) {
+    console.log('connection failed ' + error);
+  }
+}
+connectDB();
 
 // Template Engine
 app.set('view engine', 'ejs');
@@ -36,7 +46,7 @@ app.get('/add', pageController.getAddPage);
 app.get('/photos/edit/:id', pageController.getEditPage);
 
 // Port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Sunucu port ${port}'de çalışmaya başladı...`);
 });
