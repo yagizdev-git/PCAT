@@ -11,7 +11,7 @@ const pageController = require('./controllers/pageControllers')
 const app = express();
 
 // Connecting to DB
-mongoose.connect('mongodb://localhost/pcat-db');
+// mongoose.connect('mongodb://localhost/pcat-db');
 
 // Template Engine
 app.set('view engine', 'ejs');
